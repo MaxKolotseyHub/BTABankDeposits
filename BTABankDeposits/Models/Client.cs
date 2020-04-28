@@ -8,7 +8,7 @@ namespace BTABankDeposits.Controllers
 {
     public class Client
     {
-        public int Id { get; set; }
+        public int id { get; set; }
         [Display(Name ="Имя")]
         [Required]
         public string FirstName { get; set; }

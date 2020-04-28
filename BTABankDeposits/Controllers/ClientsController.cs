@@ -6,12 +6,12 @@ using System.Web.Mvc;
 
 namespace BTABankDeposits.Controllers
 {
-    public class HomeController : Controller
+    public class ClientsController : Controller
     {
+        // GET: Clients
         public ActionResult Index()
         {
             return View();
         }
-
     }
 }
