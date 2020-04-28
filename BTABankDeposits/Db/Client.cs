@@ -21,14 +21,17 @@ namespace BTABankDeposits.Controllers
         [Display(Name ="Дата рождения")]
         [Required]
         public DateTime BirthDate { get; set; }
-        [Display(Name ="Пол")]
+        [Display(Name ="Мужчина")]
         [Required]
         public bool IsMale { get; set; }
+        [Display(Name = "Женщина")]
+        [Required]
+        public bool IsFemale { get; set; }
+        [RegularExpression("([A-Z]{2})", ErrorMessage = "Должен состоять из двух заглавных латинских букв")]
         [Display(Name ="Серия паспорта")]
         [Required]
         public string PassportSeries { get; set; }
         [Display(Name ="Номер паспорта")]
-        [RegularExpression("([A-Z]{2})", ErrorMessage = "Должен состоять из двух заглавных латинских букв")]
         [Required]
         public string PassportNumber{ get; set; }
         [Display(Name ="Кем выдан")]
@@ -51,11 +54,11 @@ namespace BTABankDeposits.Controllers
         [Required]
         public string LivingAddress { get; set; }
         [Display(Name ="Телефон домашний")]
-        [RegularExpression(@"(\d{7})", ErrorMessage ="Должен состоять из 7 цифр")]
+        //[RegularExpression(@"(\d{7})", ErrorMessage ="Должен состоять из 7 цифр")]
         [Required]
         public string PhoneNumberHome { get; set; }
         [Display(Name ="Телефон мобильный")]
-        [RegularExpression(@"(+375\d{9})", ErrorMessage ="Введите с кодом +375")]
+        [RegularExpression(@"(.\d{12})", ErrorMessage = "Введите с кодом +375")]
         [Required]
         public string PhoneNumberMobile { get; set; }
         [Display(Name ="Email")]
