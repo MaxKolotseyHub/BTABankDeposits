@@ -66,5 +66,22 @@ namespace BTABankDeposits.Controllers
             }
             return RedirectToAction("Index");
         }
+        public ActionResult Details(int id)
+        {
+            return View(mapper.Map<ClientDetailsViewModel>(db.Clients.FirstOrDefault(x => x.Id == id)));
+        }
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            return View(db.Clients.FirstOrDefault(x=>x.Id==id));
+        }
+        [HttpPost]
+        public ActionResult Edit(Client client)
+        {
+            db.Entry(client).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
     }
 }

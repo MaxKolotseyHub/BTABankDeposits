@@ -19,6 +19,20 @@ namespace BTABankDeposits.Helpers
                 {
                     cfg.CreateMap<Client, ClientsListViewModel>()
                     .ForMember("Name", opt => opt.MapFrom(c => c.SecondName + " " + c.FirstName + " " + c.ThirdName));
+
+                    cfg.CreateMap<Client, ClientDetailsViewModel>()
+                    .ForMember("Name", opt => opt.MapFrom(c => c.SecondName + " " + c.FirstName + " " + c.ThirdName))
+                    .ForMember("PassportData", opt=> opt.MapFrom(c=>"Номер паспорта: "+ c.PassportSeries+c.PassportNumber +
+                    "\nВыдан: " + c.PassportCreator + " " + c.PassportCreatedDate.ToShortDateString() +
+                    "\nИдентификацонный номер: " + c.PassportId ))
+                    .ForMember("LivingPlace", opt=> opt.MapFrom(c=> "г. "+ c.LivingCity +  ", " + c.LivingAddress ))
+                    .ForMember("Contacts" , opt=> opt.MapFrom(c=> "Мобильный телефон: " + c.PhoneNumberMobile +
+                    "\nДомашний телефон: "+ c.PhoneNumberHome + 
+                    "\nEmail: " + c.Email))
+                    .ForMember("WorkPlaceInfo", opt=> opt.MapFrom(c=>c.WorkPlace + "\nДолжность: " + c.WorkPosition))
+                    .ForMember("RegistrationPlace", opt=> opt.MapFrom(c=>"г. " + c.RegistrationCity + " " + c.RegistrationAddress))
+                    .ForMember("Pensioner", opt=> opt.MapFrom(c=> c.IsPensioner ? "Да" : "Нет"))
+                    .ForMember("DutyBound", opt=> opt.MapFrom(c=> c.IsDutyBound ? "Да" : "Нет"));
                 });
 
                 mapper = new Mapper(config);
