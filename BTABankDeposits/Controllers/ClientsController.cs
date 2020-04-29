@@ -51,7 +51,16 @@ namespace BTABankDeposits.Controllers
                 db.Cities.Add(new City() { Name = client.RegistrationCity });
                 db.SaveChanges();
             }
+            while (true)
+            {
+                var clientId = new Random().Next(111111, 999999);
 
+                if (db.Clients.FirstOrDefault(x => x.ClientId == clientId.ToString()) == null)
+                {
+                    client.ClientId = clientId.ToString();
+                    break;
+                }
+            }
             db.Clients.Add(client);
             db.SaveChanges();
             return RedirectToAction("Index");

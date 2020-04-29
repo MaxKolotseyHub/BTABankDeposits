@@ -11,6 +11,8 @@ namespace BTABankDeposits.Models
         public int Id { get; set; }
         [Display(Name="ФИО")]
         public string Name { get; set; }
+        [Display(Name = "Идентификационный номер клиента")]
+        public string ClientId { get; set; }
         [DataType(DataType.Date)]
         [Display(Name = "Дата рождения")]
         [Required]

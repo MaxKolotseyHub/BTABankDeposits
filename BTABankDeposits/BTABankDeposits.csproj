@@ -174,9 +174,11 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ClientsController.cs" />
+    <Compile Include="Controllers\DepositsController.cs" />
     <Compile Include="Db\MyDbContext.cs" />
     <Compile Include="Db\MyDbContextInitializer.cs" />
     <Compile Include="Helpers\AutomapperConfig.cs" />
+    <Compile Include="Models\AccountNumbers.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -186,7 +188,11 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ClientDetailsViewModel.cs" />
+    <Compile Include="Models\ClientNewDepositViewModel.cs" />
     <Compile Include="Models\ClientsListViewModel.cs" />
+    <Compile Include="Models\Currency.cs" />
+    <Compile Include="Models\Deposit.cs" />
+    <Compile Include="Models\DepositType.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -353,6 +359,8 @@
     <Content Include="Views\Clients\Create.cshtml" />
     <Content Include="Views\Clients\Details.cshtml" />
     <Content Include="Views\Clients\Edit.cshtml" />
+    <Content Include="Views\Deposits\Index.cshtml" />
+    <Content Include="Views\Deposits\CreateDeposit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

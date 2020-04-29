@@ -39,7 +39,9 @@ namespace BTABankDeposits.Db
                 SecondName="Шевцов",
                 ThirdName="Иванович",
                 WorkPlace="БГУИР",
-                WorkPosition="Менеджер проектов"
+                WorkPosition="Менеджер проектов",
+                ClientId = "726478"
+
             };
 
             var client2 = new Client()
@@ -69,7 +71,8 @@ namespace BTABankDeposits.Db
                 SecondName = "Юдашкин",
                 ThirdName = "Лисабонович",
                 WorkPlace = "Министерство борьбы с населением",
-                WorkPosition = "Радикал"
+                WorkPosition = "Радикал",
+                ClientId = "123232"
             };
 
             context.Clients.Add(client1);
@@ -86,6 +89,24 @@ namespace BTABankDeposits.Db
             };
 
             cities.ForEach(x => context.Cities.Add(x));
+
+            List<Currency> Currencies = new List<Currency>
+            {
+                new Currency{ Name = "EUR"},
+                new Currency{ Name = "BYN"},
+                new Currency{ Name = "USD"},
+                new Currency{ Name = "RUR"}
+            };
+
+            Currencies.ForEach(x=>context.Currencies.Add(x));
+
+            List<DepositType> DepositTypes = new List<DepositType>
+            {
+                new DepositType{ Name = "Депозит до восстребования" , Percent = 7.6},
+                new DepositType{ Name = "Депозит на месяц" , Percent = 10}
+            };
+
+            DepositTypes.ForEach(x=>context.DepositTypes.Add(x));
 
             base.Seed(context);
         }

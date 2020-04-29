@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BTABankDeposits.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -8,7 +9,14 @@ namespace BTABankDeposits.Controllers
 {
     public class Client
     {
+        public Client()
+        {
+            AccountNumbers = new List<AccountNumber>();
+        }
         public int Id { get; set; }
+        [Display(Name ="Идентификационный номер клиента")]
+        public string ClientId { get; set; }
+        public List<AccountNumber> AccountNumbers{ get; set; }
         [Display(Name ="Имя")]
         [Required]
         public string FirstName { get; set; }

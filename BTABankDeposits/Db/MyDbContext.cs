@@ -31,5 +31,9 @@ namespace BTABankDeposits.Db
         }
         public DbSet<Client> Clients { get; set; }
         public DbSet<City> Cities { get; set; }
+        public DbSet<Deposit> Deposits { get; set; }
+        public DbSet<Currency> Currencies { get; set; }
+        public DbSet<DepositType> DepositTypes { get; set; }
+        public DbSet<AccountNumber> AccountNumbers{ get; set; }
     }
 }
