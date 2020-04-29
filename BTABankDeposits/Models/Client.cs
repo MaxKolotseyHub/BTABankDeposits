@@ -8,7 +8,7 @@ namespace BTABankDeposits.Controllers
 {
     public class Client
     {
-        public int id { get; set; }
+        public int Id { get; set; }
         [Display(Name ="Имя")]
         [Required]
         public string FirstName { get; set; }
@@ -21,12 +21,9 @@ namespace BTABankDeposits.Controllers
         [Display(Name ="Дата рождения")]
         [Required]
         public DateTime BirthDate { get; set; }
-        [Display(Name ="Мужчина")]
+        [Display(Name ="Пол")]
         [Required]
-        public bool IsMale { get; set; }
-        [Display(Name = "Женщина")]
-        [Required]
-        public bool IsFemale { get; set; }
+        public string Gender { get; set; }
         [RegularExpression("([A-Z]{2})", ErrorMessage = "Должен состоять из двух заглавных латинских букв")]
         [Display(Name ="Серия паспорта")]
         [Required]
@@ -73,7 +70,7 @@ namespace BTABankDeposits.Controllers
         [Display(Name ="Город прописки")]
         [Required]
         public string RegistrationCity { get; set; }
-        [Display(Name ="Город прописки")]
+        [Display(Name ="Адрес прописки")]
         [Required]
         public string RegistrationAddress { get; set; }
         [Display(Name ="Семейное положение")]

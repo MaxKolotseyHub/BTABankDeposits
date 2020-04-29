@@ -1,5 +1,6 @@
 ﻿using BTABankDeposits.Controllers;
 using BTABankDeposits.Db;
+using BTABankDeposits.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -20,8 +21,7 @@ namespace BTABankDeposits.Db
                 FirstName = "Алексей",
                 Invalidity = "Нет",
                 IsDutyBound = true,
-                IsMale = true,
-                IsFemale=false,
+                Gender="М",
                 IsPensioner = false,
                 LivingAddress = "Улица Пушкина, дом Колотушкина",
                 LivingCity = "Минск",
@@ -51,8 +51,7 @@ namespace BTABankDeposits.Db
                 FirstName = "Клёпа",
                 Invalidity = "Нет",
                 IsDutyBound = true,
-                IsMale = true,
-                IsFemale=false,
+                Gender="М",
                 IsPensioner = false,
                 LivingAddress = "Улица Шугаева 19/1/142",
                 LivingCity = "Минск",
@@ -73,8 +72,20 @@ namespace BTABankDeposits.Db
                 WorkPosition = "Радикал"
             };
 
-            context.Cliens.Add(client1);
-            context.Cliens.Add(client2);
+            context.Clients.Add(client1);
+            context.Clients.Add(client2);
+
+            List<City> cities = new List<City>()
+            {
+                new City(){Name="Минск"},
+                new City(){Name="Гомель"},
+                new City(){Name="Гродно"},
+                new City(){Name="Витебск"},
+                new City(){Name="Брест"},
+                new City(){Name="Могилев" }
+            };
+
+            cities.ForEach(x => context.Cities.Add(x));
 
             base.Seed(context);
         }

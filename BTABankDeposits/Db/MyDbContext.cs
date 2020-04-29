@@ -1,4 +1,5 @@
 ﻿using BTABankDeposits.Controllers;
+using BTABankDeposits.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -15,8 +16,20 @@ namespace BTABankDeposits.Db
         }
         public MyDbContext(string conntectionString = "Default"):base(conntectionString)
         {
-
+            
         }
-        public DbSet<Client> Cliens { get; set; }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Client>()
+                .Property(p => p.BirthDate)
+                .HasColumnType("datetime2");
+            modelBuilder.Entity<Client>()
+                .Property(p => p.PassportCreatedDate)
+                .HasColumnType("datetime2");
+
+            base.OnModelCreating(modelBuilder);
+        }
+        public DbSet<Client> Clients { get; set; }
+        public DbSet<City> Cities { get; set; }
     }
 }

@@ -177,7 +177,8 @@
     <Compile Include="Db\MyDbContext.cs" />
     <Compile Include="Db\MyDbContextInitializer.cs" />
     <Compile Include="Helpers\AutomapperConfig.cs" />
-    <Compile Include="Db\Client.cs" />
+    <Compile Include="Models\City.cs" />
+    <Compile Include="Models\Client.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
