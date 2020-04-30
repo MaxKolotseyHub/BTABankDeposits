@@ -19,7 +19,7 @@ namespace BTABankDeposits.Helpers
                 {
                     cfg.CreateMap<Client, ClientsListViewModel>()
                     .ForMember("Name", opt => opt.MapFrom(c => c.SecondName + " " + c.FirstName + " " + c.ThirdName))
-                    .ForMember("DepositCount", opt => opt.MapFrom(c => c.Deposits.Count));
+                    .ForMember("DepositCount", opt => opt.MapFrom(c => c.Deposits.Where(x=>x.IsHandled).ToList().Count));
 
                     cfg.CreateMap<Client, ClientDetailsViewModel>()
                     .ForMember("Name", opt => opt.MapFrom(c => c.SecondName + " " + c.FirstName + " " + c.ThirdName))
@@ -37,7 +37,8 @@ namespace BTABankDeposits.Helpers
                     .ForMember("ClientId", opt => opt.MapFrom(c => c.ClientId));
 
                     cfg.CreateMap<Deposit, DepositListViewModel>()
-                    .ForMember("InterestCharges", opt => opt.MapFrom(c => c.AccountNumbers.FirstOrDefault(x => x.Prefix == "1230").Credit))
+                    .ForMember("InterestCharges", opt => opt.MapFrom(c =>String.Format("{0:0.00}", c.AccountNumbers.FirstOrDefault(x => x.Prefix == "1230").Credit)))
+                    .ForMember("Status", opt => opt.MapFrom(c => c.CurrentState))
                     .ForMember("DepositType", opt => opt.MapFrom(c => c.DepositType.Name))
                     .ForMember("DepositPercent", opt => opt.MapFrom(c => c.DepositType.Percent))
                     .ForMember("TillEnd", opt => opt.MapFrom(c => c.ContractDuration - (DateTime.Now.Date - c.Start.Date).Days));

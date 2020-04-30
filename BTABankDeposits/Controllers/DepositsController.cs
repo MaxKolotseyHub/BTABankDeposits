@@ -25,7 +25,7 @@ namespace BTABankDeposits.Controllers
         // GET: Deposits
         public ActionResult Index()
         {
-            ViewBag.Deposits = db.Deposits.ToList();
+            ViewBag.Deposits = db.Deposits.Where(x=>x.IsHandled).ToList();
 
             return View(mapper.Map<List<ClientsListViewModel>>(db.Clients.Where(x => x.ClientId != "111111").ToList()));
         }
@@ -41,10 +41,19 @@ namespace BTABankDeposits.Controllers
         [HttpGet]
         public ActionResult Deposits(int id)
         {
-            var tmp = db.Clients.FirstOrDefault(x => x.Id == id).Deposits.ToList();
+            var tmp = db.Deposits.Where(x => x.IsHandled & x.ClientId == id).ToList();
             var deposits = mapper.Map<List<DepositListViewModel>>(tmp);
-
             return View(deposits);
+        }
+        [HttpGet]
+        public ActionResult Interrupt(int id)
+        {
+            var tmp = db.Deposits.FirstOrDefault(x => x.Id== id);
+            tmp.IsInterrupted = true;
+            tmp.CurrentState = "В обработке";
+            db.Entry(tmp).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Deposits", new { id = id});
         }
         [HttpPost]
         public ActionResult CreateDeposit(Deposit deposit)
@@ -66,12 +75,7 @@ namespace BTABankDeposits.Controllers
             {
                 deposit.Currency = currency;
             }
-
-            IDepositAccountNumbersFactory accountNumbersFactory = new SimpleDepositAccountNumberFactory();
-
-            deposit.AccountNumbers.Add(accountNumbersFactory.CreateCheckingAccount(deposit));
-            deposit.AccountNumbers.Add(accountNumbersFactory.CreatePercentAccount(deposit));
-
+            deposit.IsHandled = false;
             db.Deposits.Add(deposit);
             db.SaveChanges();
 

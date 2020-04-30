@@ -175,10 +175,13 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\DepositsController.cs" />
+    <Compile Include="Controllers\EndOfDayController.cs" />
     <Compile Include="Db\MyDbContext.cs" />
     <Compile Include="Db\MyDbContextInitializer.cs" />
     <Compile Include="Helpers\AutomapperConfig.cs" />
+    <Compile Include="Helpers\BankEOD.cs" />
     <Compile Include="Helpers\IDepositAccountNumbersFactory.cs" />
+    <Compile Include="Helpers\IEndOfBankDay.cs" />
     <Compile Include="Helpers\SimpleDepositAccountNumberFactory.cs" />
     <Compile Include="Models\AccountNumbers.cs" />
     <Compile Include="Models\City.cs" />
@@ -365,6 +368,7 @@
     <Content Include="Views\Deposits\Index.cshtml" />
     <Content Include="Views\Deposits\CreateDeposit.cshtml" />
     <Content Include="Views\Deposits\Deposits.cshtml" />
+    <Content Include="Views\EndOfDay\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

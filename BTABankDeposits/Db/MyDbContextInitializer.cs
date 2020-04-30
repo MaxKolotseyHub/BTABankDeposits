@@ -177,19 +177,18 @@ namespace BTABankDeposits.Db
                 Debet = 0,
                 AccountType = AccountType.Passive
             };
-            client1.AccountNumbers.Add(accNumber);
-            client1.AccountNumbers.Add(perNumber);
+
             Deposit d = new Deposit
             {
                 DepositType = DepositTypes[0],
                 Client = client1,
                 ContractDuration = 45,
-                AccountNumbers = new List<AccountNumber> { accNumber, perNumber },
                 ContractNumber = "Shev726-1",
                 Currency = Currencies[1],
                 DepositSum = 1000,
                 Start = new DateTime(2020, 4, 25),
-                End = new DateTime(2021, 4, 25)
+                End = new DateTime(2021, 4, 25),
+                IsHandled = false
             };
 
             context.Deposits.Add(d);

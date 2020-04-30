@@ -20,7 +20,7 @@ namespace BTABankDeposits.Models
         public virtual DepositType DepositType { get; set; }
         public int CurrencyId { get; set; }
         public virtual Currency Currency { get; set; }
-        public List<AccountNumber> AccountNumbers{ get; set; }
+        public virtual List<AccountNumber> AccountNumbers{ get; set; }
         [Display(Name = "Номер договора")]
         public string ContractNumber { get; set; }
         [Display(Name = "Дата начала депозитной программы")]
@@ -31,5 +31,9 @@ namespace BTABankDeposits.Models
         public int ContractDuration { get; set; }
         [Display(Name = "Сумма вклада")]
         public double DepositSum { get; set; }
+        public bool IsHandled { get; set; } = false;
+        public bool IsInterrupted {get; set; } = false;
+        public bool Closed { get; set; } = false;
+        public string CurrentState { get; set; }
     }
 }

@@ -43,7 +43,7 @@ namespace BTABankDeposits.Helpers
                 Suffix = suffix,
                 Client = deposit.Client,
                 AccountType = AccountType.Passive,
-                Credit = deposit.DepositSum,
+                Credit = 0,
                 Debet = 0
             };
 

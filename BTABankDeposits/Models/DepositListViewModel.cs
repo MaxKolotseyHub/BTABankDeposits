@@ -20,8 +20,10 @@ namespace BTABankDeposits.Models
         [Display(Name="До конца срока (дней)")]
         public int TillEnd { get; set; }
         [Display(Name="Начисленные проценты")]
-        public double InterestCharges { get; set; }
+        public string InterestCharges { get; set; }
         [Display(Name="Сумма депозита")]
         public double DepositSum { get; set; }
+        [Display(Name="Статус")]
+        public string Status { get; set; }  
     }
 }
