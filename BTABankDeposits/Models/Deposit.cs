@@ -15,19 +15,19 @@ namespace BTABankDeposits.Models
         }
         public int Id { get; set; }
         public int ClientId { get; set; }
-        public Client Client{ get; set; }
+        public virtual Client Client{ get; set; }
         public int DepositTypeId { get; set; }
-        public DepositType DepositType { get; set; }
+        public virtual DepositType DepositType { get; set; }
         public int CurrencyId { get; set; }
-        public Currency Currency { get; set; }
+        public virtual Currency Currency { get; set; }
         public List<AccountNumber> AccountNumbers{ get; set; }
         [Display(Name = "Номер договора")]
         public string ContractNumber { get; set; }
         [Display(Name = "Дата начала депозитной программы")]
         public DateTime Start { get; set; }
-        [Display(Name = "Дата оконнчания депозитной программы")]
+        [Display(Name = "Дата окончания депозитной программы")]
         public DateTime End { get; set; }
-        [Display(Name = "Срок договора")]
+        [Display(Name = "Срок договора (В Днях)")]
         public int ContractDuration { get; set; }
         [Display(Name = "Сумма вклада")]
         public double DepositSum { get; set; }

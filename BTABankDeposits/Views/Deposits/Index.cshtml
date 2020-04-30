@@ -38,7 +38,11 @@
                 @Html.DisplayFor(modelItem => item.PhoneNumberMobile)
             </td>
             <td>
-                @Html.ActionLink("Открыть депозит", "CreateDeposit", new { id = item.Id }, htmlAttributes: new { @class="btn btn-outline-danger"})
+                @Html.ActionLink("Открыть депозит", "CreateDeposit", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-outline-danger" })
+                @if (item.DepositCount != 0)
+                {
+                    @Html.ActionLink("Просмотреть депозиты", "Deposits", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-outline-danger"})
+                }
             </td>
         </tr>
     }

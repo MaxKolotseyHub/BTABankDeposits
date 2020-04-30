@@ -178,6 +178,8 @@
     <Compile Include="Db\MyDbContext.cs" />
     <Compile Include="Db\MyDbContextInitializer.cs" />
     <Compile Include="Helpers\AutomapperConfig.cs" />
+    <Compile Include="Helpers\IDepositAccountNumbersFactory.cs" />
+    <Compile Include="Helpers\SimpleDepositAccountNumberFactory.cs" />
     <Compile Include="Models\AccountNumbers.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\Client.cs" />
@@ -192,6 +194,7 @@
     <Compile Include="Models\ClientsListViewModel.cs" />
     <Compile Include="Models\Currency.cs" />
     <Compile Include="Models\Deposit.cs" />
+    <Compile Include="Models\DepositListViewModel.cs" />
     <Compile Include="Models\DepositType.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -361,6 +364,7 @@
     <Content Include="Views\Clients\Edit.cshtml" />
     <Content Include="Views\Deposits\Index.cshtml" />
     <Content Include="Views\Deposits\CreateDeposit.cshtml" />
+    <Content Include="Views\Deposits\Deposits.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

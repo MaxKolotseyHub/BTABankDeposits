@@ -12,22 +12,34 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    <input type="hidden" value="@ViewBag.Client.Id" />
+    <input type="hidden" name ="ClientId" value="@ViewBag.Client.Id" />
 
     <div class="form-horizontal">
         <h4>Deposit</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="container ">
-            <p>Идентификационный номер клиента:</p>
-            <p class="form-control col-1"> @ViewBag.Client.ClientId</p>
+        <div class="container row">
+            <div class="col-lg-5">
+                <p>Идентификационный номер клиента:</p>
+                <p class="form-control col-lg-2 col-md-3 col-sm"> @ViewBag.Client.ClientId</p>
+            </div>
+
+            <div class="form-group col-lg-5">
+                @Html.LabelFor(model => model.ContractNumber, htmlAttributes: new { @class = "control-label col-lg" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ContractNumber, new { htmlAttributes = new { @class = "form-control" } })
+
+                    @Html.ValidationMessageFor(model => model.ContractNumber, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
         </div>
         <hr />
 
         <div class="form-group row container">
             <div class="col-lg-4">
                 <p class="col-form-label">Тип депозита</p>
-                <select name="DepositType" id="depositTypeName" class="form-control">
+                <select name="DepositTypeId" id="depositTypeName" class="form-control">
                     @foreach (var item in ViewBag.DepositTypes)
                     {
                         <option value="@item.Id">@item.Name</option>
@@ -37,69 +49,74 @@
             </div>
             <div class="col-lg-4">
                 <p class="col-form-label">Процентная ставка</p>
-                <p id="depositTypePercent" class="form-control"></p>
+                <p id="depositTypePercent" class="form-control col-sm col-md-2 col-lg-2"></p>
             </div>
         </div>
 
         <div class="form-group col-md-10">
             <p>Валюта депозита</p>
-           <select class="form-control" name="CurrencyId">
-               @foreach (var item in ViewBag.Currencies)
-               {
-                   <option value="@item.Id">@item.Name</option>
-               }
-           </select>
+            <select class="form-control" name="CurrencyId">
+                @foreach (var item in ViewBag.Currencies)
+                {
+                    <option value="@item.Id">@item.Name</option>
+                }
+            </select>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ContractNumber, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ContractNumber, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ContractNumber, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-
+        <hr />
         <div class="form-group row">
-            @Html.LabelFor(model => model.Start, htmlAttributes: new { @class = "control-label col-md-5" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Start, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
-                @Html.ValidationMessageFor(model => model.Start, "", new { @class = "text-danger" })
+            <div class="col-lg-4">
+                @Html.LabelFor(model => model.Start, htmlAttributes: new { @class = "control-label col-lg" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Start, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                    @Html.ValidationMessageFor(model => model.Start, "", new { @class = "text-danger" })
+                </div>
             </div>
-            @Html.LabelFor(model => model.End, htmlAttributes: new { @class = "control-label col-md-5" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.End, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
-                @Html.ValidationMessageFor(model => model.End, "", new { @class = "text-danger" })
+            <div class="col-lg-4">
+
+                @Html.LabelFor(model => model.End, htmlAttributes: new { @class = "control-label col-lg" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.End, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                    @Html.ValidationMessageFor(model => model.End, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
+        <hr />
 
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ContractDuration, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ContractDuration, htmlAttributes: new { @class = "control-label col-lg" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ContractDuration, new { htmlAttributes = new { @class = "form-control", @min=31} })
+                @Html.EditorFor(model => model.ContractDuration, new { htmlAttributes = new { @class = "form-control", @min = 31, @id = "contractDuration" } })
                 @Html.ValidationMessageFor(model => model.ContractDuration, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.DepositSum, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DepositSum, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DepositSum, "", new { @class = "text-danger" })
+        <hr />
+        <div class="form-group row">
+            <div class="col-lg-4">
+                @Html.LabelFor(model => model.DepositSum, htmlAttributes: new { @class = "control-label col-lg" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DepositSum, new { htmlAttributes = new { @class = "form-control", @id = "depositSum" } })
+                    @Html.ValidationMessageFor(model => model.DepositSum, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <p class="control-label col-lg">Сумма по истечении срока</p>
+                <p class="form-control" id="resultSum"></p>
             </div>
         </div>
+    <hr />
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Оформить депозит" class="btn btn-outline-success" />
         </div>
+    </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Назад", "Index")
 </div>
 
 @section Scripts {
@@ -120,10 +137,26 @@
                     $('#depositTypePercent').text(type.Percent);
                 }
 
+                function ChangeResultSum() {
+                    let percent =parseFloat( $('#depositTypePercent').text());
+                    let duration =parseFloat( $('#contractDuration').val());
+                    let sum =parseFloat( $('#depositSum').val());
+                    let percentPerDay = percent / 365;
+                    let resultSum =Number( sum + (sum * percentPerDay * duration)/100).toFixed(2);
+                    $('#resultSum').text(resultSum);
+                }
+
                 $('#depositTypeName').change(function () {
                     UpdatePercentValue();
                 });
 
+                $('#contractDuration').change(function () {
+                    ChangeResultSum();
+                });
+
+                $('#depositSum').change(function () {
+                    ChangeResultSum();
+                });
                 UpdatePercentValue();
             }
         );

@@ -10,12 +10,18 @@ namespace BTABankDeposits.Models
     {
         public int Id { get; set; }
         public int ClientId { get; set; }
-        public Client Client{ get; set; }
+        public virtual Client Client{ get; set; }
         public string Prefix { get; set; }
         public string Suffix { get; set; }
         public string Base { get; set; }
         public double Debet { get; set; }
         public double Credit { get; set; }
         public double Saldo { get; set; }
+        public AccountType AccountType { get; set; }
+    }
+    public enum AccountType
+    {
+        Passive,
+        Active
     }
 }

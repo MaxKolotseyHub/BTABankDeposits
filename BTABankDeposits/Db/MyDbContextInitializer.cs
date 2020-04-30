@@ -74,9 +74,37 @@ namespace BTABankDeposits.Db
                 WorkPosition = "Радикал",
                 ClientId = "123232"
             };
+            var bank = new Client()
+            {
+                BirthDate = new DateTime(1998, 7, 16),
+                BirthPlace = "-",
+                Citizenship = "-",
+                Email = "-",
+                FirstName = "БТА-БАНК",
+                Invalidity = "-",
+                IsDutyBound = false,
+                Gender="М",
+                IsPensioner = false,
+                LivingAddress = "-",
+                LivingCity = "_",
+                MaritalStatus = "-",
+                MonthlyIncome = 0,
+                PassportCreatedDate = new DateTime(2016, 08, 13),
+                PassportCreator = "-",
+                PassportId = "0000000X000XX0",
+                PassportNumber = "-",
+                PassportSeries = "XX",
+                PhoneNumberHome = "-",
+                PhoneNumberMobile = "+375000000000",
+                RegistrationAddress = "-",
+                RegistrationCity = "-",
+                SecondName = "-",
+                ThirdName = "-",
+                WorkPlace = "-",
+                WorkPosition = "-",
+                ClientId = "111111"
+            };
 
-            context.Clients.Add(client1);
-            context.Clients.Add(client2);
 
             List<City> cities = new List<City>()
             {
@@ -108,6 +136,67 @@ namespace BTABankDeposits.Db
 
             DepositTypes.ForEach(x=>context.DepositTypes.Add(x));
 
+            AccountNumber fondNumber = new AccountNumber
+            {
+                Prefix = "7327",
+                Base = "111111",
+                Suffix = "001",
+                Credit = 100000000000,
+                Debet = 0,
+                AccountType = AccountType.Passive
+            };
+
+            AccountNumber cashierNumber = new AccountNumber
+            {
+                Prefix = "1010",
+                Base = "111111",
+                Suffix = "001",
+                Credit = 0,
+                Debet = 0,
+                AccountType = AccountType.Passive
+            };
+
+            bank.AccountNumbers.Add(fondNumber);
+            bank.AccountNumbers.Add(cashierNumber);
+
+            AccountNumber accNumber = new AccountNumber
+            {
+                Prefix = "3014",
+                Base = client1.ClientId,
+                Suffix = "001",
+                Credit = 1000,
+                Debet = 0,
+                AccountType = AccountType.Passive
+            };
+            AccountNumber perNumber = new AccountNumber
+            {
+                Prefix = "1230",
+                Base = client1.ClientId,
+                Suffix = "001",
+                Credit = 0,
+                Debet = 0,
+                AccountType = AccountType.Passive
+            };
+            client1.AccountNumbers.Add(accNumber);
+            client1.AccountNumbers.Add(perNumber);
+            Deposit d = new Deposit
+            {
+                DepositType = DepositTypes[0],
+                Client = client1,
+                ContractDuration = 45,
+                AccountNumbers = new List<AccountNumber> { accNumber, perNumber },
+                ContractNumber = "Shev726-1",
+                Currency = Currencies[1],
+                DepositSum = 1000,
+                Start = new DateTime(2020, 4, 25),
+                End = new DateTime(2021, 4, 25)
+            };
+
+            context.Deposits.Add(d);
+            context.Clients.Add(bank);
+
+            context.Clients.Add(client1);
+            context.Clients.Add(client2);
             base.Seed(context);
         }
     }

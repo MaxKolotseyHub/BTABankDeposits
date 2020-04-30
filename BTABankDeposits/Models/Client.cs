@@ -12,11 +12,13 @@ namespace BTABankDeposits.Controllers
         public Client()
         {
             AccountNumbers = new List<AccountNumber>();
+            Deposits = new List<Deposit>();
         }
         public int Id { get; set; }
         [Display(Name ="Идентификационный номер клиента")]
         public string ClientId { get; set; }
-        public List<AccountNumber> AccountNumbers{ get; set; }
+        public virtual List<AccountNumber> AccountNumbers{ get; set; }
+        public virtual List<Deposit> Deposits{ get; set; }
         [Display(Name ="Имя")]
         [Required]
         public string FirstName { get; set; }

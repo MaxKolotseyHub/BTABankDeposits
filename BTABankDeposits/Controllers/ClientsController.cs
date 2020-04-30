@@ -25,7 +25,7 @@ namespace BTABankDeposits.Controllers
         }
         public ActionResult Index()
         {
-            return View(mapper.Map<List<ClientsListViewModel>>(db.Clients.ToList()));
+            return View(mapper.Map<List<ClientsListViewModel>>(db.Clients.Where(x=>x.ClientId != "111111").ToList()));
         }
         [HttpGet]
         public ActionResult Create()

@@ -16,5 +16,6 @@ namespace BTABankDeposits.Models
         public DateTime BirthDate { get; set; }
         [Display(Name="Моб. Телефон")]
         public string PhoneNumberMobile { get; set; }
+        public int DepositCount { get; set; }
     }
 }
