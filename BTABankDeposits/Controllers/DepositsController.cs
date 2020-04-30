@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BTABankDeposits.Db;
+using BTABankDeposits.Filters;
 using BTABankDeposits.Helpers;
 using BTABankDeposits.Models;
 using System;
@@ -10,6 +11,7 @@ using System.Web.Mvc;
 
 namespace BTABankDeposits.Controllers
 {
+    [MyAuthAttribute]
     public class DepositsController : Controller
     {
         private readonly Mapper mapper = AutomapperConfig.GetMapper();

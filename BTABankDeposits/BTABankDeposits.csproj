@@ -176,8 +176,10 @@
     <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\DepositsController.cs" />
     <Compile Include="Controllers\EndOfDayController.cs" />
+    <Compile Include="Db\AppDbInitializer.cs" />
     <Compile Include="Db\MyDbContext.cs" />
     <Compile Include="Db\MyDbContextInitializer.cs" />
+    <Compile Include="Filters\MyAuthAttribute.cs" />
     <Compile Include="Helpers\AutomapperConfig.cs" />
     <Compile Include="Helpers\BankEOD.cs" />
     <Compile Include="Helpers\IDepositAccountNumbersFactory.cs" />

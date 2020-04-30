@@ -1,4 +1,5 @@
 ﻿using BTABankDeposits.Db;
+using BTABankDeposits.Filters;
 using BTABankDeposits.Helpers;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Web.Mvc;
 
 namespace BTABankDeposits.Controllers
 {
+    [MyAuthAttribute]
     public class EndOfDayController : Controller
     {
         // GET: EndOfDay
