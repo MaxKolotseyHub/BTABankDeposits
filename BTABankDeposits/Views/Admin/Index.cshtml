@@ -1,0 +1,46 @@
+﻿@model IEnumerable<BTABankDeposits.Models.ApplicationUser>
+
+<h2>Список пользователей</h2>
+
+<p>
+    @Html.ActionLink("Новый пользователь", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            <p>Email</p>
+        </th>
+        <th>
+            <p>Заблокирован</p>
+        </th>
+        <th>
+            <p>Ошбики при входе</p>
+        </th>
+        <th>
+            <p>Имя пользователя</p>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LockoutEnabled)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AccessFailedCount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.ActionLink("Редактировать", "Update", new { id=item.Id }) |
+            @Html.ActionLink("Удалить", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

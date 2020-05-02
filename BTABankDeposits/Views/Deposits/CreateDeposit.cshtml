@@ -4,7 +4,7 @@
     ViewBag.Title = "CreateDeposit";
 }
 
-<h2>CreateDeposit</h2>
+<h2>Новый депозит</h2>
 <div class="col-lg">
     <h2 class="lead">@ViewBag.Client.Name</h2>
 </div>
@@ -15,7 +15,6 @@
     <input type="hidden" name ="ClientId" value="@ViewBag.Client.Id" />
 
     <div class="form-horizontal">
-        <h4>Deposit</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="container row">

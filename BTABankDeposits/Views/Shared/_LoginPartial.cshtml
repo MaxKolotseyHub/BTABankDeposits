@@ -1,18 +1,25 @@
 ﻿@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
+
+    if (this.User.IsInRole("admin"))
+    {
+        <ul class="nav navbar-nav navbar-right">
+            <li><a class="nav-link" href="/Admin/">Управление пользователями</a></li>
+        </ul>
+    }
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
+        <ul class="nav navbar-nav navbar-right">
 
-    <ul class="nav navbar-nav navbar-right">
-        <li><a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Выход</a></li>
-    </ul>
+            <li><a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Выход</a></li>
+        </ul>
     }
 }
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li class="nav-item">@Html.ActionLink("Вход", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" ,@class="nav-link"})</li>
+        <li class="nav-item">@Html.ActionLink("Вход", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link" })</li>
     </ul>
 }
